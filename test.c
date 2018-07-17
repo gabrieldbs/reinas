@@ -64,6 +64,9 @@ int check_fila(int *lattice, int n){
 	return a;	//  A == 0 POS  A !=0 NEG
 }
 
+/*
+Hay que hacer division entera
+*/
 int checkdiagonal(int *lattice, int n,int i){
 	int a=0,b=0,c=0,d=0,e=0;
 	int jj,ii;
