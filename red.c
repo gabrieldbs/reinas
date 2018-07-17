@@ -8,8 +8,9 @@
 
 int main(int argc, char **argv) {
 	//double l[16];
-	int a,b,c,d,it,n,m,cf,cd,CM;
+	int a,b,c,d,it,n,m,cf,cd,CM, iterat;
 	n=8;
+	iterat=0;
 	m=50000;
 	int *lattice= malloc (n * n * sizeof(int));
 	double *prob= malloc (n * sizeof(double));
@@ -37,63 +38,63 @@ int main(int argc, char **argv) {
 					prob[q]=prob[q]+1./(n*n);}
 			}
 
-		 if (CM==2)
+		 if (CM==2){
 				for(int q=0;q<n;q++){
 					prob[q]=prob[q]-1./(n*n);}
+		 	}
 		 if (CM==0){
 			
-			 a=0;
+			a=0;
 			for(int q=0;q<n;q++){
 				//printf("Test mitad  si \n");	
 				a=a+suma_linea(lattice,n,q);}
 
-				if (a<n){	
-					for(int q;q<n;q++){
-						 prob[q]=prob[q]+1./(n*n);}
-					}
+			if (a<n){	
+				for(int q;q<n;q++){
+					prob[q]=prob[q]+1./(n*n);}
+				}
 
-				if (a==n){
+			if (a==n){
 					 //printf("Test suma linea si \n");					
 					// CHEQUEO FILA
-					cf=check_fila(lattice,n);
-
-					if (cf==0){
-						printf("Test suma fila si \n");
-						print_lattice(lattice,n);
-						for (int r;r<n;r++){
-							cd=cheackdiagonal(lattice,n,r);
-							}
-							/*
-										for (int r=0;r<n;r++){
-											cd=checkdiagonal(lattice,n,r);
-			
-											if (cd==0){
-												printf("SIIi \n");
-												d=d+1;
-												print_lattice(lattice,n);
-												printf("\n");
-												//M=fill_new_lattice(lattice,n, prob);
-												}
-											else 
-												printf("NOi \n");
-												print_lattice(lattice,n);
-												printf("\n");
-											}*/
-										
-
-						}
-
+				cf=check_fila(lattice,n);
+				
+				if (cf==0){
+					printf("Test suma fila si \n");
+					print_lattice(lattice,n);
+					for (int r;r<n;r++){
+						cd=cheackdiagonal(lattice,n,r);
+						if (cd==0){
+							printf("OK\n");
+							d=d+1;	}
+					}
 				}
 			}
-		
+		 }
+					/*
+					for (int r=0;r<n;r++){
+					cd=checkdiagonal(lattice,n,r);
+
+					if (cd==0){
+						printf("SIIi \n");
+						d=d+1;
+						print_lattice(lattice,n);
+						printf("\n");
+						//M=fill_new_lattice(lattice,n, prob);
+						}
+					else 
+						printf("NOi \n");
+						print_lattice(lattice,n);
+						printf("\n");
+					}*/	
 			
-			
-	
-	}
+	iterat=iterat+1;
+	}// iteracion
 	
 	printf("%d \n",d);
+	printf("%d \n",iterat);
 	free (prob);
-	free(lattice);
+	free (lattice);
 	return(0);
 }
 
