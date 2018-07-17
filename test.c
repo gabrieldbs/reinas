@@ -78,23 +78,23 @@ int checkdiagonal(int *lattice, int n,int i){
 				c=i+b;
 				d=j+b;
 				e=j-b;
-				if (d<n){
-					ii=lattice[c*n+d];		
-					}
-				if (e>0){
+				if ((i*n+d)%n == i){
+					ii=lattice[c*n+d];}
+				if ((i*n+e)%n == i){
 					jj=lattice[c*n+e];}
 				if (ii==1 || jj==1){
-					m=m+1;
-				}
+					m=m+1;}
 			}
-		}		
+		}
 	}
 	if (m==0){
 		printf("SI %d",m);	
 		}
+	if (m!=0){
+		printf("NO %d",m);	
+		}
 	return m;
 }
-	
 /*
 int cheackdiagonal(int *lattice, int n,int w){
 	int a,bb,cc;
