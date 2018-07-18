@@ -11,13 +11,13 @@
 */
 
 double llenar_proba(double *prob, int n){
-	int i;
+	int i,r;
 	for(i=0;i<n;i++){
-	prob[i]=0;	
+	prob[i]=0.;
 	}
 
 	for(i=0;i<n;i++){
-	prob[i]=0.3;	
+	prob[i]=0.014;	
 	}
 }
 /*
@@ -70,6 +70,17 @@ int print_lattice(int *lattice, int n) {
   return 0;
 }
 
+
+int print_proba_100(double *prob, int n) {
+  int i;
+	printf("\n");
+  for (i=0;i<n;i++){
+      printf("%g ",prob[i]);
+      }
+		printf("\n");
+    
+  return 0;
+}
 
 /*
 ---VIEJA MANERA DE HACER LA RED----

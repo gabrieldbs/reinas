@@ -69,38 +69,40 @@ Hay que hacer division entera
 */
 int checkdiagonal(int *lattice, int n,int i){
 	int a=0,b=0,c=0,d=0,e=0,l,oo;
-	int jj,ii;
+	int jj=0,ii=0;
 	int m=0;
+	//print_lattice(lattice,n);
 	for (int j=0;j<n;j++){
 		a=lattice[i*n+j];
-		printf("a=%d \n",a);
+		//printf("a=%d \n",a);
 	
 		if (a==1){
 			for(b=1;b<n;b++){
-				c=i+b;
-
-				d=j+b;
-				e=j-b;
-				print_lattice(lattice,n);
-				l=(i*n+d)%n;
-				oo=(i*n+e)%n;
-				printf("l+= %d, oo-= %d \n ",l,oo);
-				if ((i*n+d)%n == i){
+				d=b*(n+1)+(i*n+j);
+				e=b*(n-1)+(i*n+j);
+				//printf("d= %d, e= %d \n ",d,e);
+				//print_lattice(lattice,n);
+				l=(d)/(n);
+				oo=(e)/(n);
+				//printf("l+= %d, oo-= %d \n ",l,oo);
+				if (l == i+b){
 	
-					ii=lattice[c*n+d];}
-				if ((i*n+e)%n == i){
-					jj=lattice[c*n+e];}
-				if (ii==1 || jj==1){
-					m=m+1;}
+					ii=lattice[d];
+						if (ii==1){m=m+1;}
+						}
+				if (oo == i+b){
+					jj=lattice[e];
+						if (jj==1){m=m+1;}
+						}
 			}
 		}
-	}
+	}/*
 	if (m==0){
-		printf("SI %d",m);	
+		printf("SI %d \n",m);	
 		}
 	if (m!=0){
-		printf("NO %d",m);	
-		}
+		printf("NO %d \n",m);	
+		}*/
 	return m;
 }
 /*
