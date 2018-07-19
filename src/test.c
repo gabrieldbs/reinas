@@ -135,19 +135,25 @@ int cheackdiagonal(int *lattice, int n,int w){
 */
 
 int checkmitad(int * lattice, int n){
-	int sum=0;
+	int sum=0,sumseg=0;
 	int a=1;
 	for(int i=0;i<n;i++){
 		for(int j=0;j<n/2;j++){
 			sum=sum+lattice[i*n+j];
 		}
+		for(int l=n/2;l<n;l++){
+			sumseg=sumseg+lattice[i*n+l];
+		}
 	}
-	if (sum==n/2){
+	//print_lattice(lattice,n);		
+	//printf("sum = %d, sumseg = %d \n",sum, sumseg);
+	if (sum==n/2 && sumseg==n/2){
 		a=0;}
-		//print_lattice(lattice,n);		
 		
-	if(sum>n/2){
+		
+	if(sum>n/2+1){
 		a=2;}
+		
 
 	return a; // A ==0 POS A  !=0 NEG
 }

@@ -9,13 +9,13 @@
 int main(int argc, char **argv) {
 	
 	int a,c,d,it,n,m,cf,cd,CM, iterat;
-	n=100;
+	n=10;
 	iterat=0;
-	m=100000;
+	m=60000;
 	int *lattice= malloc (n * n * sizeof(int));
 	double *prob= malloc (n * sizeof(double));
 	llenar_proba(prob,n);
-	print_proba_100(prob, n);
+	//print_proba_100(prob, n);
 	srand(time(NULL));
 	int M,o=0;
 	//M=fill_new_lattice(lattice, n, prob);
@@ -34,15 +34,17 @@ int main(int argc, char **argv) {
 
 
 //CHEQUEAR MITAD MITAD
-		for (int icm=0;i<n;i++){
-			CM=checkmitad(lattice,n,i);
+			//print_proba_100(prob, n);
+			CM=checkmitad(lattice,n);
 			 if (CM==1){
 					LMMMAS=LMMMAS+1;
-					prob[icm]=prob[icm]+1./(n*n*n);}		
+						for(int icm=0;icm<n;icm++){
+					prob[icm]=prob[icm]+1./(n*n*n);}}		
 			 if (CM==2){
 					LMMMENOS=LMMMENOS+1;
-					prob[icm]=prob[icm]-1./(n*n*n);}
-				}
+						 for(int icm=0;icm<n;icm++){
+					prob[icm]=prob[icm]-1./(n*n*n);}}
+				
   		 if (CM==0){		
 			a=0;
 			for(int q=0;q<n;q++){
@@ -53,7 +55,7 @@ int main(int argc, char **argv) {
 					LLIN=LLIN+1;
 				for(int q;q<n;q++){
 				
-					prob[q]=prob[q]+1./(n*n*n);}
+					prob[q]=prob[q]+1./(n*n);}
 				}
 
 			if (a==n){
@@ -61,7 +63,7 @@ int main(int argc, char **argv) {
 					// CHEQUEO FILA
 				cf=check_fila(lattice,n);
 				if (cf != 0){
-					L=L+1;}
+					LLIN=LLIN+1;}
 				if (cf==0){
 					//printf("Test suma fila si \n");
 					//print_lattice(lattice,n);
@@ -106,12 +108,18 @@ int main(int argc, char **argv) {
 			
 	iterat=iterat+1;
 	}// iteracion
-	print_proba_100(prob,n) ;
-	printf("d = %d \n",d);
-	printf("L =%d \n",L);
-	printf("LMMMAS =%d \n",LMMMAS);
-	printf("LMMMENOS =%d \n",LMMMENOS);
-	printf("LLIN =%d \n",LLIN);
+	//print_proba_100(prob,n) ;
+	double a1,a2,a3,a4,a5;
+	a1=d*1.0/iterat;
+	a2=L*1.0/iterat;
+	a3=LMMMAS*1.0/iterat;
+	a4=LMMMENOS*1.0/iterat;
+	a5=LLIN*1.0/iterat;
+	printf("d = %d, %g \n",d,a1);
+	printf("L =%d, %g \n",L,a2);
+	printf("LMMMAS =%d ,%g \n",LMMMAS ,a3);
+	printf("LMMMENOS =%d, %g \n",LMMMENOS,a4);
+	printf("LLIN =%d, %g \n",LLIN,a5);
 	printf("iteraciones =%d \n",iterat);
 	free (prob);
 	free (lattice);

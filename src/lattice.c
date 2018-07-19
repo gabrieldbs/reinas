@@ -17,7 +17,7 @@ double llenar_proba(double *prob, int n){
 	}
 
 	for(i=0;i<n;i++){
-	prob[i]=0.014;	
+	prob[i]=0.25;	
 	}
 }
 /*
@@ -81,6 +81,7 @@ int print_proba_100(double *prob, int n) {
     
   return 0;
 }
+
 
 /*
 ---VIEJA MANERA DE HACER LA RED----
