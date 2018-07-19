@@ -26,15 +26,7 @@ double suma_tot(int *lattice,int n,int i){
 	return res;
 }
 */
-int suma_linea(int *lattice, int n, int i){
-	int MM;
-		MM=0;
-		for(int j=0;j<n;j++){
-			MM=MM+lattice[i*n+j];
-			}
-		//printf(" MM %d \n",MM);
-		return MM;			// 		MM == 0   NEG    MM== 1 POS
-	} 
+
 
 int check_fila(int *lattice, int n){
 	int i, j, l,a=0;
@@ -105,45 +97,28 @@ int checkdiagonal(int *lattice, int n,int i){
 		}*/
 	return m;
 }
-/*
-int cheackdiagonal(int *lattice, int n,int w){
-	int a,bb,cc;
-	for(int i=0;i<n;i++){
-		a=0,bb=0,cc=0;
+	
+	
+int suma_linea(int *lattice, int n, int i){
+	int MM,r,l=0,o=0;
+	r= rand();
+		MM=0;
 		for(int j=0;j<n;j++){
-			a=lattice[i*n+j];
-			if (a==1){	
-				b=i*n+j;
-					if(i!=n){
-					for (l=i;l<n;l++){
-						if ((l*n+j+l)%n==l){
-							bb=lattice[l*n+j+l];
-							printf("%d\n",bb)
-								}
-						if ((l*n-j+l)%n==l){
-							cc=lattice[l*n+j-l];
-							printf("%d\n",bb)
-							}
-						}
-					}
-				}
-			}
-		}			
-}
-	
-	
-*/
+			MM=MM+lattice[i*n+j];
+			}		
+		//printf(" MM %d \n",MM);
+		return MM;			// 		MM == 0   NEG    MM== 1 POS
+	} 
 
 int checkmitad(int * lattice, int n){
 	int sum=0,sumseg=0;
 	int a=1;
 	for(int i=0;i<n;i++){
 		for(int j=0;j<n/2;j++){
-			sum=sum+lattice[i*n+j];
-		}
+			sum=sum+lattice[i*n+j];		}
 		for(int l=n/2;l<n;l++){
-			sumseg=sumseg+lattice[i*n+l];
-		}
+			sumseg=sumseg+lattice[i*n+l];		}
+//		if (sum + sumseg <1){poner_1(lattice,n,i);}
 	}
 	//print_lattice(lattice,n);		
 	//printf("sum = %d, sumseg = %d \n",sum, sumseg);
@@ -157,3 +132,8 @@ int checkmitad(int * lattice, int n){
 
 	return a; // A ==0 POS A  !=0 NEG
 }
+/*
+int poner_1(int *lattice, int n, int i){
+	
+}
+*/

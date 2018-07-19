@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
 	int a,c,d,it,n,m,cf,cd,CM, iterat;
 	n=10;
 	iterat=0;
-	m=60000;
+	m=2*pow (10,8);
 	int *lattice= malloc (n * n * sizeof(int));
 	double *prob= malloc (n * sizeof(double));
 	llenar_proba(prob,n);
@@ -26,6 +26,9 @@ int main(int argc, char **argv) {
 	int LMM=0,LLIN=0;
 	int LMMMAS=0,LMMMENOS=0;
 	d=0;
+	double pmax, pmin;
+	pmax=0.2;
+	pmin=0.1;
 	for (it=0;it<m;it++){
 		
 		c=0;
@@ -38,26 +41,34 @@ int main(int argc, char **argv) {
 			CM=checkmitad(lattice,n);
 			 if (CM==1){
 					LMMMAS=LMMMAS+1;
+					if(prob[1]<pmax){
 						for(int icm=0;icm<n;icm++){
-					prob[icm]=prob[icm]+1./(n*n*n);}}		
+					prob[icm]=prob[icm]+1./(n*n*n*n);}}	
+					else{
+						for(int icm=0;icm<n;icm++){
+							prob[icm]=pmax*.5+pmin*.5;}}}
 			 if (CM==2){
 					LMMMENOS=LMMMENOS+1;
+					if(prob[1]>pmin){
 						 for(int icm=0;icm<n;icm++){
-					prob[icm]=prob[icm]-1./(n*n*n);}}
+					prob[icm]=prob[icm]-1./(n*n*n*n);}}
+					else{
+						for(int icm=0;icm<n;icm++){
+							prob[icm]=pmax*.5+pmin*.5;}}}
 				
   		 if (CM==0){		
-			a=0;
-			for(int q=0;q<n;q++){
+			//a=0;
+			//for(int q=0;q<n;q++){
 				//printf("Test mitad  si \n");	
-				a=a+suma_linea(lattice,n,q);}
-
-			if (a<n){	
+				//a=a+suma_linea(lattice,n,q);}
+				a=n;
+			/*if (a<n){	
 					LLIN=LLIN+1;
 				for(int q;q<n;q++){
 				
 					prob[q]=prob[q]+1./(n*n);}
 				}
-
+*/
 			if (a==n){
 					 //printf("Test suma linea si \n");					
 					// CHEQUEO FILA
@@ -80,11 +91,13 @@ int main(int argc, char **argv) {
 						if (cd==0){
 							print_lattice(lattice,n);
 							printf("YES\n");
+							printf("%g \n",prob[1]);
 							d=d+1;}
 					if (cd != 0){
 						//	print_lattice(lattice,n);
 							//printf("NOT \n");
- 							 L=L+1;}
+							//hist(prob[1]);
+ 							L=L+1;}
 				}
 				
 			}
@@ -108,7 +121,7 @@ int main(int argc, char **argv) {
 			
 	iterat=iterat+1;
 	}// iteracion
-	//print_proba_100(prob,n) ;
+	print_proba_100(prob,n) ;
 	double a1,a2,a3,a4,a5;
 	a1=d*1.0/iterat;
 	a2=L*1.0/iterat;
