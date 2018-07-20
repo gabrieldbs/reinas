@@ -134,6 +134,8 @@ int checkmitad(int * lattice, int n){
 }
 /*
 int poner_1(int *lattice, int n, int i){
-	
+	for (int j=0;j<n;j++ ){
+		
+	}
 }
 */

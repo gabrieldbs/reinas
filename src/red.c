@@ -9,9 +9,9 @@
 int main(int argc, char **argv) {
 	
 	int a,c,d,it,n,m,cf,cd,CM, iterat;
-	n=10;
+	n=20;
 	iterat=0;
-	m=2*pow (10,8);
+	m=6*pow (10,8);
 	int *lattice= malloc (n * n * sizeof(int));
 	double *prob= malloc (n * sizeof(double));
 	llenar_proba(prob,n);
@@ -27,8 +27,10 @@ int main(int argc, char **argv) {
 	int LMMMAS=0,LMMMENOS=0;
 	d=0;
 	double pmax, pmin;
-	pmax=0.2;
-	pmin=0.1;
+	pmax=0.15;
+	pmin=0.01;
+	int secs = time(NULL);
+	
 	for (it=0;it<m;it++){
 		
 		c=0;
@@ -134,9 +136,10 @@ int main(int argc, char **argv) {
 	printf("LMMMENOS =%d, %g \n",LMMMENOS,a4);
 	printf("LLIN =%d, %g \n",LLIN,a5);
 	printf("iteraciones =%d \n",iterat);
+	secs = time(NULL)-secs;
+  	printf(" El calculo tomo %d hs, %d min, %d secs\n\n", secs/3600, (secs/60) % 60, secs % 60);
 	free (prob);
 	free (lattice);
 	return(0);
 }
-
-
+ 

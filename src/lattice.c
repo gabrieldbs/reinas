@@ -13,7 +13,7 @@
 double llenar_proba(double *prob, int n){
 	int i;
 	double proba;
-	proba=0.18;
+	proba=0.082;
 	for(i=0;i<n;i++){
 	prob[i]=0.;
 	}
